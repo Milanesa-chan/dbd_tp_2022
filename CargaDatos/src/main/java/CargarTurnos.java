@@ -1,17 +1,17 @@
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
-public class Main {
-    public static final String DB_URL = "jdbc:postgresql://localhost:5432/club";
-    public static final String DB_USER = "postgres";
-    public static final String DB_PASS = "estanislao";
+public class CargarTurnos {
 
     public static void main(String[] args) throws SQLException {
         cargarTurnos();
     }
 
     public static void cargarTurnos() throws SQLException {
-        Statement stmt = getConn().createStatement();
+        Statement stmt = Conector.getConn().createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM \"Puede_Desarrollarse_En\";");
         int act, zona;
         String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"};
@@ -36,12 +36,12 @@ public class Main {
         }
 
         System.out.println(sql);
-        Statement stmtFinal = getConn().createStatement();
+        Statement stmtFinal = Conector.getConn().createStatement();
         stmtFinal.execute(sql);
     }
 
     public static boolean existeTurno(Turno t) throws SQLException {
-        PreparedStatement stmt = getConn().prepareStatement("SELECT * FROM \"Turno\" WHERE periodo=? AND id_zona=? AND " +
+        PreparedStatement stmt = Conector.getConn().prepareStatement("SELECT * FROM \"Turno\" WHERE periodo=? AND id_zona=? AND " +
                 "hora=? AND dia=?;");
         stmt.setInt(1, t.peri);
         stmt.setInt(2, t.zona);
@@ -52,14 +52,6 @@ public class Main {
         return stmt.execute();
     }
 
-    public static Connection getConn() {
-        try {
-            return DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }
 
 class Turno {
