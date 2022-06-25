@@ -14,7 +14,7 @@
 <div th:replace="fragments/header :: header"></div>
 
 <div class="container form-container">
-    <form action="@{/newClient/group/save}">
+    <form th:action="@{/newClient/group/save}" method="post" action="#">
         <h2>Datos del Titular</h2>
         <div class="form-group mb-2">
             <label for="inputNombre">Nombre</label>
