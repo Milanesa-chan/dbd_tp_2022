@@ -38,6 +38,10 @@ public class Socio {
     @Column(name="tipo")
     private char tipo;
 
+
+    public Socio() {
+    }
+
     public Socio(int cod_base, int id_socio, String nombre, String apellido, String celular, Date fechaNac, int deudaSocio, Date fechaInscripcionClub, char tipo) {
         this.cod_base = cod_base;
         this.id_socio = id_socio;

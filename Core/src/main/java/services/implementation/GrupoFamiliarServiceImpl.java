@@ -17,9 +17,6 @@ public class GrupoFamiliarServiceImpl implements IGrupoFamiliarService
     @Autowired
     private IGrupoFamiliarDAO grupoFamiliarDAO;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Override
     public GrupoFamiliar findOne(long cod_base) {
         return grupoFamiliarDAO.findOne(cod_base);
