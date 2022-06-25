@@ -1,0 +1,18 @@
+
+.get_started {
+    min-height: 100vh;
+    background: url('welcome2.jpg') center center/cover no-repeat;
+    /*background-size: cover;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    height: 100vh;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+}
+
+a {
+  text-decoration: none !important;
+  color: white !important;
+}
