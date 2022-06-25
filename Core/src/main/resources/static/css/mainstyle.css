@@ -13,6 +13,19 @@
 }
 
 a {
-  text-decoration: none !important;
-  color: white !important;
+  text-decoration: none;
+  color: white;
+}
+
+.form-container {
+    margin-top: 70px;
+}
+
+form > button {
+    margin-top: 10px;
+}
+
+#h2_grupo {
+    margin-top: 20px;
+
 }

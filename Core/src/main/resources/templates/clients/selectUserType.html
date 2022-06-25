@@ -8,14 +8,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" media="all" href="/css/header.css" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" />
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
 
 <div class="container">
-    <a th:href="@{/newClient/group}">Create new Group</a>
 
-    <a th:href="@{/newClient/user}">Create new User</a>
+
+    <a class="link-secondary" th:href="@{/newClient/group}">Create new Group</a>
+
+    <a class="link-secondary" th:href="@{/newClient/user}">Create new User</a>
 
 
 </div>
