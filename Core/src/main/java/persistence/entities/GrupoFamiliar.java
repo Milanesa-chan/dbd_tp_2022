@@ -28,6 +28,10 @@ public class GrupoFamiliar {
         this.telefono = telefono;
     }
 
+    public GrupoFamiliar(){
+
+    }
+
     public int getCod_base() {
         return cod_base;
     }

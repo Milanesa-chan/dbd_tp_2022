@@ -1,10 +1,13 @@
 package configuration;
 
 
+import com.fasterxml.classmate.AnnotationConfiguration;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
+import org.hibernate.SessionFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,12 +16,14 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import persistence.entities.GrupoFamiliar;
+import persistence.entities.Socio;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class /*HibernateJpaAutoConfiguration.class*/})
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @ComponentScan({"configuration","controllers","services","persistence"})
 @EnableTransactionManagement
 public class BeanConfig {
@@ -30,6 +35,7 @@ public class BeanConfig {
 //        sessionFactory.setPackagesToScan(
 //                "configuration","controllers","services","persistence" );
         sessionFactory.setHibernateProperties(hibernateProperties());
+        sessionFactory.setAnnotatedClasses(GrupoFamiliar.class);
 
         return sessionFactory;
     }
