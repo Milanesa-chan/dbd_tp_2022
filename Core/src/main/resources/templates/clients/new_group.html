@@ -14,41 +14,43 @@
 <div th:replace="fragments/header :: header"></div>
 
 <div class="container form-container">
-    <form action="">
+    <form action="@{/newClient/group/save}">
         <h2>Datos del Titular</h2>
         <div class="form-group mb-2">
             <label for="inputNombre">Nombre</label>
-            <input id="inputNombre" class="form-control" placeholder="Ingrese nombre">
+            <input id="inputNombre" class="form-control" placeholder="Ingrese nombre" th:name="nombre">
         </div>
         <div class="form-group mb-2">
             <label for="inputApellido">Apellido</label>
-            <input id="inputApellido" class="form-control" placeholder="Ingrese Apellido">
+            <input id="inputApellido" class="form-control" placeholder="Ingrese Apellido" th:name="apellido">
         </div>
         <div class="form-group mb-2">
             <label for="inputCelular">Celular</label>
-            <input id="inputCelular" class="form-control" placeholder="Tel Celular">
+            <input id="inputCelular" class="form-control" placeholder="Tel Celular" th:name="celular">
         </div>
         <div class="form-group mb-2">
             <label for="inputFechaNac">Fecha Nacimiento</label>
-            <input id="inputFechaNac" class="form-control" placeholder="DD/MM/AAAA">
+            <input id="inputFechaNac" class="form-control" placeholder="DD/MM/AAAA" th:name="fecha_nac">
         </div>
         <div class="form-group mb-10">
             <label for="inputTipo">Tipo de Socio</label>
-            <select id="inputTipo" class="form-control">
+            <select id="inputTipo" class="form-control" th:name="tipo_socio">
                 <option selected>Choose...</option>
-                <option>...</option>
+                <option value="I">Infantil</option>
+                <option value="M">Mayor</option>
+                <option value="V">Vitalicio</option>
             </select>
         </div>
         <h2 id="h2_grupo">Datos del Grupo Familiar</h2>
         <div class="form-group mb-2 mt-10">
             <label for="inputDomicilio" >Domicilio</label>
-            <input id="inputDomicilio" class="form-control" placeholder="Ingrese Domicilio">
+            <input id="inputDomicilio" class="form-control" placeholder="Ingrese Domicilio" th:name="domicilio">
         </div>
         <div class="form-group mb-10">
             <label for="inputTelefono" >Telefono</label>
-            <input id="inputTelefono" class="form-control" placeholder="Ingrese telefono fijo">
+            <input id="inputTelefono" class="form-control" placeholder="Ingrese telefono fijo" th:name="tel_fijo">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Crear</button>
     </form>
 </div>
 </body>
