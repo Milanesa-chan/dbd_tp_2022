@@ -42,14 +42,12 @@ public class Socio {
     public Socio() {
     }
 
-    public Socio(int cod_base, int id_socio, String nombre, String apellido, String celular, Date fechaNac, int deudaSocio, Date fechaInscripcionClub, char tipo) {
+    public Socio(int cod_base, String nombre, String apellido, String celular, Date fechaNac, Date fechaInscripcionClub, char tipo) {
         this.cod_base = cod_base;
-        this.id_socio = id_socio;
         this.nombre = nombre;
         this.apellido = apellido;
         this.celular = celular;
         this.fechaNac = fechaNac;
-        this.deudaSocio = deudaSocio;
         this.fechaInscripcionClub = fechaInscripcionClub;
         this.tipo = tipo;
     }
