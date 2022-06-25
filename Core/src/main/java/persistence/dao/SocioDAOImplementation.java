@@ -6,6 +6,7 @@ import persistence.entities.Socio;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 @Repository
 public class SocioDAOImplementation implements ISocioDAO{
@@ -19,4 +20,21 @@ public class SocioDAOImplementation implements ISocioDAO{
         q.setParameter("id_socio", id_socio);
         return (Socio) q.getSingleResult();
     }
+
+
+    @Transactional
+    @Override
+    public int save(Socio socio) {
+        Query q = entityManager.createNativeQuery("INSERT INTO \"Socio\" (cod_base,nombre, apellido, celular, fecha_nac,fecha_inscripcion_club, tipo) " +
+                "VALUES (:cod_base,:nombre, :apellido, :celular, :fecha_nac,:fecha_inscripcion_club, :tipo) RETURNING id_socio");
+        q.setParameter("cod_base", socio.getCod_base());
+        q.setParameter("nombre", socio.getNombre());
+        q.setParameter("apellido", socio.getApellido());
+        q.setParameter("celular", socio.getCelular());
+        q.setParameter("fecha_nac", socio.getFechaNac());
+        q.setParameter("fecha_inscripcion_club", socio.getFechaInscripcionClub());
+        q.setParameter("tipo", socio.getTipo());
+        return (int) q.getSingleResult();
+    }
 }
+

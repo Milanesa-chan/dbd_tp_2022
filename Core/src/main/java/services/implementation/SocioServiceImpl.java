@@ -19,4 +19,11 @@ public class SocioServiceImpl implements ISocioService {
     public Socio findOne(long cod_base, long id_socio) {
         return socioDAO.findOne(cod_base, id_socio);
     }
+
+    @Override
+    public int save(Socio socio) {
+        return socioDAO.save(socio);
+    }
+
+
 }
