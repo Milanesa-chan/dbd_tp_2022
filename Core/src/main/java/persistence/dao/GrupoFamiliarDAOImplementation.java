@@ -22,4 +22,12 @@ public class GrupoFamiliarDAOImplementation implements IGrupoFamiliarDAO {
         GrupoFamiliar grupoFamiliar = (GrupoFamiliar) q.getSingleResult();
         return grupoFamiliar;
     }
+
+    @Override
+    public void save(GrupoFamiliar grupoFamiliar) {
+        Query q = entityManager.createNativeQuery("INSERT INTO \"Grupo_Familiar\" (domicilio, telefono) VALUES (:domicilio, :telefono)");
+        q.setParameter("domicilio", grupoFamiliar.getDomicilio());
+        q.setParameter("telefono", grupoFamiliar.getTelefono());
+        q.executeUpdate();
+    }
 }

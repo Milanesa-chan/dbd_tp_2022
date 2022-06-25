@@ -28,6 +28,11 @@ public class GrupoFamiliar {
         this.telefono = telefono;
     }
 
+    public GrupoFamiliar(String domicilio, String telefono) {
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+    }
+
     public GrupoFamiliar(){
 
     }

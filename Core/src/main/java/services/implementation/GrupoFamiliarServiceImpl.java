@@ -22,4 +22,9 @@ public class GrupoFamiliarServiceImpl implements IGrupoFamiliarService
         return grupoFamiliarDAO.findOne(cod_base);
     }
 
+    @Override
+    public void save(GrupoFamiliar grupoFamiliar) {
+        grupoFamiliarDAO.save(grupoFamiliar);
+    }
+
 }

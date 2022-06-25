@@ -8,4 +8,6 @@ import persistence.entities.GrupoFamiliar;
 public interface IGrupoFamiliarService
 {
     public GrupoFamiliar findOne(long cod_base);
+
+    public void save(GrupoFamiliar grupoFamiliar);
 }
