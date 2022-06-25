@@ -6,6 +6,7 @@ import persistence.entities.GrupoFamiliar;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 
 @Repository
@@ -23,12 +24,14 @@ public class GrupoFamiliarDAOImplementation implements IGrupoFamiliarDAO {
         return grupoFamiliar;
     }
 
+
+    @Transactional
     @Override
     public int save(GrupoFamiliar grupoFamiliar) {
         Query q = entityManager.createNativeQuery("INSERT INTO \"Grupo_Familiar\" (domicilio, telefono) VALUES (:domicilio, :telefono) RETURNING cod_base");
         q.setParameter("domicilio", grupoFamiliar.getDomicilio());
         q.setParameter("telefono", grupoFamiliar.getTelefono());
-        q.executeUpdate();
+//      q.executeUpdate();
         return (int) q.getSingleResult();
     }
 }

@@ -21,7 +21,9 @@ public class HomeController {
     @RequestMapping(value = "/example", method = RequestMethod.GET)
     public String example () {
         GrupoFamiliar gf = grupoFamiliarService.findOne(103);
+        int cod_base = grupoFamiliarService.save(gf);
         System.out.println(gf.getDomicilio());
+        System.out.println("Codigo Base" + cod_base);
         return "index";
     }
 }
