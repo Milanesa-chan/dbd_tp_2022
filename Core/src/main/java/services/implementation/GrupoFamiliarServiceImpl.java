@@ -2,8 +2,7 @@ package services.implementation;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import persistence.dao.GrupoFamiliarDAO;
+import persistence.dao.IGrupoFamiliarDAO;
 import services.interfaces.IGrupoFamiliarService;
 import persistence.entities.GrupoFamiliar;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class GrupoFamiliarServiceImpl implements IGrupoFamiliarService
 {
 
     @Autowired
-    private GrupoFamiliarDAO grupoFamiliarDAO;
+    private IGrupoFamiliarDAO grupoFamiliarDAO;
 
     @PersistenceContext
     private EntityManager entityManager;

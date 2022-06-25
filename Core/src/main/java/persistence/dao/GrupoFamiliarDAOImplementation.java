@@ -9,7 +9,7 @@ import javax.persistence.Query;
 
 
 @Repository
-public class GrupoFamiliarDAOImplementation implements GrupoFamiliarDAO{
+public class GrupoFamiliarDAOImplementation implements IGrupoFamiliarDAO {
 
 
     @PersistenceContext
