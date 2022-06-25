@@ -9,5 +9,5 @@ public interface IGrupoFamiliarService
 {
     public GrupoFamiliar findOne(long cod_base);
 
-    public void save(GrupoFamiliar grupoFamiliar);
+    public int save(GrupoFamiliar grupoFamiliar);
 }

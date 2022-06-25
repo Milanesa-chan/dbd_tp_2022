@@ -24,10 +24,11 @@ public class GrupoFamiliarDAOImplementation implements IGrupoFamiliarDAO {
     }
 
     @Override
-    public void save(GrupoFamiliar grupoFamiliar) {
-        Query q = entityManager.createNativeQuery("INSERT INTO \"Grupo_Familiar\" (domicilio, telefono) VALUES (:domicilio, :telefono)");
+    public int save(GrupoFamiliar grupoFamiliar) {
+        Query q = entityManager.createNativeQuery("INSERT INTO \"Grupo_Familiar\" (domicilio, telefono) VALUES (:domicilio, :telefono) RETURNING cod_base");
         q.setParameter("domicilio", grupoFamiliar.getDomicilio());
         q.setParameter("telefono", grupoFamiliar.getTelefono());
         q.executeUpdate();
+        return (int) q.getSingleResult();
     }
 }

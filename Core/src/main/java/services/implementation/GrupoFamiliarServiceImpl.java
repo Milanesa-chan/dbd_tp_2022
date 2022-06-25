@@ -23,8 +23,8 @@ public class GrupoFamiliarServiceImpl implements IGrupoFamiliarService
     }
 
     @Override
-    public void save(GrupoFamiliar grupoFamiliar) {
-        grupoFamiliarDAO.save(grupoFamiliar);
+    public int save(GrupoFamiliar grupoFamiliar) {
+        return grupoFamiliarDAO.save(grupoFamiliar);
     }
 
 }

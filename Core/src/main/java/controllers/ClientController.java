@@ -39,9 +39,8 @@ public class ClientController {
 
         //Guarda Grupo Familiar
         GrupoFamiliar grupoFamiliar = new GrupoFamiliar(domicilio,telefono);
-        grupoFamiliarService.save(grupoFamiliar);
+        int cod_base = grupoFamiliarService.save(grupoFamiliar);
         //Guarda el Socio titular
-        Socio socio = new Socio(nombre,apellido,celular,fecha_nac,tipo,grupoFamiliar);
         return "/clients/new_group";
     }
 }
