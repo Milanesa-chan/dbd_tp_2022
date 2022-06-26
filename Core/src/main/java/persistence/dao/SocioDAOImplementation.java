@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public class SocioDAOImplementation implements ISocioDAO{
@@ -35,6 +36,13 @@ public class SocioDAOImplementation implements ISocioDAO{
         q.setParameter("fecha_inscripcion_club", socio.getFechaInscripcionClub());
         q.setParameter("tipo", socio.getTipo());
         return (int) q.getSingleResult();
+    }
+
+    @Override
+    public List<Socio> getSocios() {
+        Query q = entityManager.createNativeQuery("SELECT * FROM \"Socio\"");
+
+        return q.getResultList();
     }
 }
 

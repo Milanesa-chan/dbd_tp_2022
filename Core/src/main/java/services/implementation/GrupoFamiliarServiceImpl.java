@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Service
 public class GrupoFamiliarServiceImpl implements IGrupoFamiliarService
@@ -26,5 +27,11 @@ public class GrupoFamiliarServiceImpl implements IGrupoFamiliarService
     public int save(GrupoFamiliar grupoFamiliar) {
         return grupoFamiliarDAO.save(grupoFamiliar);
     }
+
+    @Override
+    public List<GrupoFamiliar> getGrupoFamiliarList() {
+        return grupoFamiliarDAO.getGrupoFamiliarList();
+    }
+
 
 }

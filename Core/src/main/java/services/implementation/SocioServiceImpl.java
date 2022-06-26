@@ -8,6 +8,7 @@ import services.interfaces.ISocioService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Service
 public class SocioServiceImpl implements ISocioService {
@@ -23,6 +24,11 @@ public class SocioServiceImpl implements ISocioService {
     @Override
     public int save(Socio socio) {
         return socioDAO.save(socio);
+    }
+
+    @Override
+    public List<Socio> getSocios() {
+        return socioDAO.getSocios();
     }
 
 
