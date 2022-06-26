@@ -27,8 +27,13 @@ public class SocioServiceImpl implements ISocioService {
     }
 
     @Override
-    public List<Socio> getSocios() {
-        return socioDAO.getSocios();
+    public List<Socio> getSociosTitulares() {
+        return socioDAO.getSociosTitulares();
+    }
+
+    @Override
+    public Socio findOneById(int idTitular) {
+        return socioDAO.findOneById(idTitular);
     }
 
 

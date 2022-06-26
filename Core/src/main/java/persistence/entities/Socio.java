@@ -21,7 +21,7 @@ public class Socio {
     private String nombre;
 
     @Column(name="apellido")
-    private String apellido;
+    public String apellido;
 
     @Column(name="celular")
     private String celular;
@@ -43,6 +43,17 @@ public class Socio {
     }
 
     public Socio(int cod_base, String nombre, String apellido, String celular, Date fechaNac, Date fechaInscripcionClub, char tipo) {
+        this.cod_base = cod_base;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.celular = celular;
+        this.fechaNac = fechaNac;
+        this.fechaInscripcionClub = fechaInscripcionClub;
+        this.tipo = tipo;
+    }
+
+    public Socio(int cod_base, int id_socio, String nombre, String apellido, String celular, Date fechaNac, Date fechaInscripcionClub, char tipo) {
+        this.id_socio = id_socio;
         this.cod_base = cod_base;
         this.nombre = nombre;
         this.apellido = apellido;

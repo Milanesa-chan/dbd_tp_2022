@@ -10,8 +10,11 @@ public interface ISocioDAO
 
     public int save(Socio socio);
 
+
     List<Socio> getSocios();
 
     public int cantidadSociosFamilia(long cod_base);
+    List<Socio> getSociosTitulares();
+
 }
 
