@@ -28,4 +28,9 @@ public class ActividadServiceImpl implements IActividadService {
     public List<Actividad> findAllAranceladas() {
         return actividadDAO.findAllAranceladas();
     }
+
+    @Override
+    public List<Actividad> findAllBySocio(int cod_base, int id_socio) {
+        return actividadDAO.findAllBySocio(cod_base, id_socio);
+    }
 }

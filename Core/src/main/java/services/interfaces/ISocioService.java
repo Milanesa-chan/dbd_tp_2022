@@ -2,7 +2,6 @@ package services.interfaces;
 
 import persistence.entities.Socio;
 
-import java.math.BigInteger;
 import java.util.List;
 
 public interface ISocioService
@@ -12,6 +11,8 @@ public interface ISocioService
     public int save(Socio socio);
 
     List<Socio> getSociosTitulares();
+
+    List<Socio> getSociosByCodBase(long cod_base);
 
     public int getCantidadSociosFamilia(long cod_base);
 

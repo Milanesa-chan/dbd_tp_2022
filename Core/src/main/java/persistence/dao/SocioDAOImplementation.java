@@ -68,5 +68,12 @@ public class SocioDAOImplementation implements ISocioDAO{
         List<Socio> lista = entityManager.createNativeQuery("SELECT * FROM \"Socio\"").getResultList();
         return lista;
     }
+
+    @Override
+    public List<Socio> getSociosByCodBase(long cod_base) {
+        List<Socio> lista = entityManager.createNativeQuery("SELECT * FROM \"Socio\" WHERE cod_base = :cod_base")
+                .setParameter("cod_base", cod_base).getResultList();
+        return lista;
+    }
 }
 

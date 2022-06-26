@@ -36,5 +36,16 @@ public class ActividadDAOImplementation implements IActividadDAO {
         return actividades;
     }
 
+    @Override
+    public List<Actividad> findAllBySocio(int cod_base, int id_socio) {
+        Query q = entityManager.createNativeQuery("SELECT a.* FROM \"Socio\" s,\"Actividad\" a where ((s.tipo='I' and a.es_infantil = true)\n" +
+                "OR (s.tipo='M' and a.es_mayor = true) OR (s.tipo='V' and a.es_vitalicio = true))\n" +
+                "AND (s.cod_base,s.id_socio) = (:cod_base,:id_socio)");
+        q.setParameter("cod_base", cod_base);
+        q.setParameter("id_socio", id_socio);
+        List<Actividad> actividades = q.getResultList();
+        return actividades;
+    }
+
 
 }

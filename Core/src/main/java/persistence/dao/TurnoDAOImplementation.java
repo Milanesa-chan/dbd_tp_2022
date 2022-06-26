@@ -25,7 +25,24 @@ public class TurnoDAOImplementation implements ITurnoDAO{
 
     @Override
     public List<Turno> findAll() {
-        Query q = entityManager.createNativeQuery("SELECT * FROM \"Turno\"", Turno.class);
+        Query q = entityManager.createNativeQuery("SELECT * FROM \"Turno\"");
         return q.getResultList();
+    }
+
+    @Override
+    public List<Turno> findAllByActividad(long id_actividad) {
+        List<Turno> turnos = entityManager.createNativeQuery("SELECT * FROM \"Turno\" WHERE id_actividad = :id_actividad" +
+                        " ORDER BY \n" +
+                        "     CASE\n" +
+                        "          WHEN dia = 'Lunes' THEN 1\n" +
+                        "          WHEN dia = 'Martes' THEN 2\n" +
+                        "          WHEN dia = 'Miercoles' THEN 3\n" +
+                        "          WHEN dia = 'Jueves' THEN 4\n" +
+                        "          WHEN dia = 'Viernes' THEN 5\n" +
+                        "          WHEN dia = 'Sabado' THEN 6\n" +
+                        "          WHEN dia = 'Domingo' THEN 7\n" +
+                        "     END ASC,hora")
+                .setParameter("id_actividad", id_actividad).getResultList();
+        return turnos;
     }
 }

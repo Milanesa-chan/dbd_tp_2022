@@ -6,9 +6,6 @@ import persistence.dao.ISocioDAO;
 import persistence.entities.Socio;
 import services.interfaces.ISocioService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -30,6 +27,11 @@ public class SocioServiceImpl implements ISocioService {
     @Override
     public List<Socio> getSociosTitulares() {
         return socioDAO.getSociosTitulares();
+    }
+
+    @Override
+    public List<Socio> getSociosByCodBase(long cod_base) {
+        return socioDAO.getSociosByCodBase(cod_base);
     }
 
     @Override

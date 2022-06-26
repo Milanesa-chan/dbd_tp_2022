@@ -7,6 +7,6 @@ import java.util.List;
 public interface ITurnoService {
 
     public Turno findOne(long cod_base, long id_turno);
-
+    public List<Turno> findAllByActividad(long id_actividad);
     public List<Turno> findAll();
 }

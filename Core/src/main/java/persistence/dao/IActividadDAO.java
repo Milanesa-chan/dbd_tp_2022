@@ -10,4 +10,6 @@ public interface IActividadDAO {
     public List<Actividad> findAll();
 
     public List<Actividad> findAllAranceladas();
+
+    public List<Actividad> findAllBySocio(int cod_base,int id_socio);
 }

@@ -7,6 +7,6 @@ import java.util.List;
 public interface ITurnoDAO
 {
     public Turno findOne(long id_turno);
-
     public List<Turno> findAll();
+    public List<Turno> findAllByActividad(long id_actividad);
 }

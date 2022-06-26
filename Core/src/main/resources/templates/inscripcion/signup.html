@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" media="all" href="/css/header.css" th:href="@{/css/header.css}" />
     <link rel="stylesheet" type="text/css" media="all" href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
@@ -16,22 +17,105 @@
 <div class="signup">
     <div class="row">
         <div class="col col-inscr">
-            <h2>Datos del socio</h2>
+            <h2>Buscar Socio</h2>
+            <label for="inputGrupoFamiliar">Seleccione el grupo familiar</label>
+            <select id="inputGrupoFamiliar" th:name="idGrupoFamiliar">
+                <option value = "null" th:text="'Seleccione un titular'" disabled selected></option>
+                <option th:each="titular : ${titulares}" th:value="${titular[0]}" th:text="${titular[3] + ' ' + titular[2]}"></option>
+            </select>
             <label for="inputSocio">Seleccione el socio a inscribir</label>
             <select id="inputSocio" th:name="idSocio">
-                <option th:each="socio : ${socios}" th:value="${socio[3]}" th:text="${socio[3] + socio[2]}"></option>
+                    <option value = "null" th:text="'Seleccione un socio a inscribir'" disabled selected></option>
+<!--                <option th:each="socio : ${socios}" th:value="${socio[3]}" th:text="${socio[3] + ' ' + socio[2]}"></option>-->
             </select>
         </div>
         <div class="col col-inscr">
             <h2>Actividades disponibles</h2>
+            <label for="inputActividad">Seleccione la actividad a inscribir</label>
+            <select id="inputActividad" th:name="idActividad">
+                <option value = "null" th:text="'Seleccione una actividad'" disabled selected></option>
+            </select>
 
         </div>
         <div class="col col-inscr">
             <h2>Turnos disponibles</h2>
-
+            <label for="inputTurno">Seleccione el turno para la actividad</label>
+            <select id="inputTurno" th:name="idTurno">
+                <option value = "null" th:text="'Seleccione un turno'" disabled selected></option>
+            </select>
         </div>
     </div>
 </div>
+
+<button id="buttonInscribir"> Inscribir </button>
+
+<script>
+
+    $("#inputGrupoFamiliar").change(function() {
+        var idGrupoFamiliar = $("#inputGrupoFamiliar").val();
+        $.ajax({
+            url: "/actividades/grupoFamiliar/" + idGrupoFamiliar+"/socios",
+            type: "GET",
+            success: function(data) {
+                $("#inputSocio").empty();
+                $("#inputSocio").append('<option value = "null" disabled selected>Seleccione un socio a inscribir</option>');
+                $("#inputActividad").empty();
+                $("#inputActividad").append('<option value = "null"  disabled selected>Seleccione una actividad</option>');
+                $.each(data, function(index, value) {
+                    $("#inputSocio").append("<option value='" + value[1] + "' >" + value[3] + " " + value[2] + "</option>");
+                });
+            }
+
+        });
+    });
+
+    $("#inputSocio").change(function() {
+        var idSocio = $("#inputSocio").val();
+        var idGrupoFamiliar = $("#inputGrupoFamiliar").val();
+        $.ajax({
+            url: "/actividades/"+idGrupoFamiliar+"/socio/" + idSocio+"/actividadesDisponibles",
+            type: "GET",
+            success: function(data) {
+                $("#inputActividad").empty();
+                $("#inputActividad").append('<option value = "null" disabled selected>Seleccione una actividad</option>');
+                $.each(data, function(index, value) {
+                    $("#inputActividad").append("<option value='" + value[0] + "'>" + value[1] + "</option>");
+                });
+            }
+
+        });
+    });
+
+    $("#inputActividad").change(function() {
+        var idActividad = $("#inputActividad").val();
+        $.ajax({
+            url: "/actividades/"+ idActividad+"/turnosDisponibles",
+            type: "GET",
+            success: function(data) {
+                $("#inputTurno").empty();
+                $("#inputTurno").append('<option value = "null" disabled selected>Seleccione un turno</option>');
+                $.each(data, function(index, value) {
+                    $("#inputTurno").append("<option value='" + value[0] + "'>" + value[5] + " " + value[4] + " hs" + "</option>");
+                });
+            }
+        });
+    });
+
+    $('#buttonInscribir').click(function() {
+        var idGrupoFamiliar = $("#inputGrupoFamiliar").val();
+        var idSocio = $("#inputSocio").val();
+        var idActividad = $("#inputActividad").val();
+        var idTurno = $("#inputTurno").val();
+        $.ajax({
+            url: "/actividades/"+idGrupoFamiliar+"/socio/" + idSocio+"/actividades/" + idActividad+"/turnos/" + idTurno+"/inscribir",
+            type: "POST",
+            success: function(data) {
+                alert("Inscripcion realizada con exito");
+            }
+        });
+    });
+
+</script>
 
 </body>
 </html>
