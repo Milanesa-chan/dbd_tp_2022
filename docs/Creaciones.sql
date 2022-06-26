@@ -1,3 +1,7 @@
+-------------------------
+-- INSERCION DE SOCIOS --
+-------------------------
+
 CREATE OR REPLACE PROCEDURE insertar_sub_socio (_cod_base integer, _id_socio integer, _tipo "char")
 LANGUAGE plpgsql AS $$
 BEGIN
@@ -23,3 +27,4 @@ CREATE OR REPLACE TRIGGER trigger_insertar_socio AFTER INSERT
 ON "Socio"
 FOR EACH ROW
 EXECUTE PROCEDURE fun_trig_insertar_socio();
+
