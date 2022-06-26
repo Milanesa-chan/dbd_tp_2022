@@ -19,12 +19,12 @@
         <div class="col col-inscr">
             <h2>Buscar Socio</h2>
             <label for="inputGrupoFamiliar">Seleccione el grupo familiar</label>
-            <select id="inputGrupoFamiliar" th:name="idGrupoFamiliar">
+            <select id="inputGrupoFamiliar" th:name="idGrupoFamiliar" class="form-select signupselect">
                 <option value = "null" th:text="'Seleccione un titular'" disabled selected></option>
                 <option th:each="titular : ${titulares}" th:value="${titular[0]}" th:text="${titular[3] + ' ' + titular[2]}"></option>
             </select>
             <label for="inputSocio">Seleccione el socio a inscribir</label>
-            <select id="inputSocio" th:name="idSocio">
+            <select id="inputSocio" th:name="idSocio" class="form-select signupselect">
                     <option value = "null" th:text="'Seleccione un socio a inscribir'" disabled selected></option>
 <!--                <option th:each="socio : ${socios}" th:value="${socio[3]}" th:text="${socio[3] + ' ' + socio[2]}"></option>-->
             </select>
@@ -32,7 +32,7 @@
         <div class="col col-inscr">
             <h2>Actividades disponibles</h2>
             <label for="inputActividad">Seleccione la actividad a inscribir</label>
-            <select id="inputActividad" th:name="idActividad">
+            <select id="inputActividad" th:name="idActividad" class="form-select signupselect">
                 <option value = "null" th:text="'Seleccione una actividad'" disabled selected></option>
             </select>
 
@@ -40,14 +40,15 @@
         <div class="col col-inscr">
             <h2>Turnos disponibles</h2>
             <label for="inputTurno">Seleccione el turno para la actividad</label>
-            <select id="inputTurno" th:name="idTurno">
+            <select id="inputTurno" th:name="idTurno" class="form-select signupselect">
                 <option value = "null" th:text="'Seleccione un turno'" disabled selected></option>
             </select>
         </div>
     </div>
+    <button id="buttonInscribir" class="btn btn-light buttoninscribir" disabled> Inscribir </button>
 </div>
 
-<button id="buttonInscribir"> Inscribir </button>
+
 
 <script>
 
@@ -117,6 +118,11 @@
             }
         });
     });
+
+    $("#inputTurno").change( () => {
+        $('#buttonInscribir').prop('disabled', false);
+    });
+
 
 </script>
 

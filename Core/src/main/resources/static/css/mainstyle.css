@@ -49,7 +49,8 @@ form > button {
 }
 
 .register-group {
-    background: url('register-group.jpg') center center/cover no-repeat;
+    background: rgb(55,214,155);
+    background: linear-gradient(90deg, rgba(55,214,155,1) 13%, rgba(70,135,148,1) 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,7 +61,8 @@ form > button {
 }
 
 .register-user {
-    background: url('register-user.jpg') center center/cover no-repeat;
+    background: rgb(55,214,155);
+    background: linear-gradient(90deg, rgba(55,214,155,1) 13%, rgba(70,135,148,1) 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,4 +114,24 @@ form > button {
 
 .col-inscr > h2 {
     line-height: 20vh;
+}
+
+.signupselect {
+    max-width: 50%;
+    margin-left: 150px;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+.signup {
+    background: rgb(107,101,207);
+    background: linear-gradient(90deg, rgba(107,101,207,1) 0%, rgba(55,214,155,1) 36%, rgba(0,212,255,1) 100%);
+    height: 100vh;
+    max-width: 100vw;
+}
+
+.buttoninscribir {
+    margin-left: 40%;
+    width: 20vw;
+    font-size: 150%;
 }
