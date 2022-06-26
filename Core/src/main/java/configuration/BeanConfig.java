@@ -16,10 +16,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import persistence.entities.Actividad;
-import persistence.entities.GrupoFamiliar;
-import persistence.entities.Socio;
-import persistence.entities.Turno;
+import persistence.entities.*;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -41,6 +38,7 @@ public class BeanConfig {
         sessionFactory.setAnnotatedClasses(Socio.class);
         sessionFactory.setAnnotatedClasses(Actividad.class);
         sessionFactory.setAnnotatedClasses(Turno.class);
+        sessionFactory.setAnnotatedClasses(SeInscribeEn.class);
 
         return sessionFactory;
     }

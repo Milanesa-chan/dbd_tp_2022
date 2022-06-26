@@ -1,16 +1,23 @@
 package controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import persistence.entities.Actividad;
+import persistence.entities.SeInscribeEn;
 import persistence.entities.Socio;
 import persistence.entities.Turno;
 import services.interfaces.IActividadService;
+import services.interfaces.ISeInscribeEnService;
 import services.interfaces.ISocioService;
 import services.interfaces.ITurnoService;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,6 +31,9 @@ public class InscripcionController {
 
     @Autowired
     private ITurnoService turnoService;
+
+    @Autowired
+    private ISeInscribeEnService seInscribeEnService;
 
 
 
@@ -78,15 +88,17 @@ public class InscripcionController {
         return "/inscripcion/signup";
     }
 
-    @RequestMapping(value="/actividades/{idGrupoFamiliar}/socio/{idSocio+}/actividades/{idActividad}/turnos/{idTurno}/inscribir", method = RequestMethod.POST)
+    @RequestMapping(value="/actividades/{idGrupoFamiliar}/socio/{idSocio}/actividades/{idActividad}/turnos/{idTurno}/inscribir", method = RequestMethod.POST)
     public String inscribir(@PathVariable(name="idGrupoFamiliar") int idGrupoFamiliar, @PathVariable(name="idSocio") int idSocio, @PathVariable(name="idActividad") int idActividad, @PathVariable(name="idTurno") int idTurno) {
         try{
-            socioService.inscribir(idGrupoFamiliar, idSocio, idActividad, idTurno);
+            SeInscribeEn inscripcion = new SeInscribeEn(idGrupoFamiliar, idSocio, idTurno, Date.from(Instant.now()), true);
+            seInscribeEnService.save(inscripcion);
             return "redirect:/actividades";
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            return "redirect:/actividades";
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Error al inscribir al socio en la actividad", e);
         }
     }
 
