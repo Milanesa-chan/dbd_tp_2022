@@ -72,3 +72,29 @@ $$;
 
 CREATE TRIGGER capacidad_profesional BEFORE INSERT ON "A_Cargo_De"
 FOR EACH ROW EXECUTE FUNCTION prof_capacitado_para_turno();
+
+
+
+
+--------------
+-- VIEW--
+--------------
+
+--La cantidad de socios por categoría que se hayan inscripto en todas las actividades
+--  gratuitas durante el año pasado
+
+-- Nombre: socios_todas_actividades_gratuitas_anio_pasado
+
+SELECT count(*), tipo FROM "Socio" S
+WHERE NOT EXISTS (
+    SELECT id_actividad FROM "Actividad" A
+    WHERE A.tipo = 'G'
+    AND A.id_actividad NOT IN (
+        SELECT T.id_actividad FROM "Turno" T INNER JOIN "Actividad" A
+        ON T.id_actividad = A.id_actividad INNER JOIN
+        "Se_Inscribe_En" SIE ON SIE.id_turno = T.id_turno
+        WHERE SIE.cod_base = S.cod_base AND SIE.id_socio = S.id_socio
+        AND  (DATE_PART('year',SIE.fecha_inscr) = DATE_PART('year',CURRENT_DATE) - 1)
+    )
+)
+group by tipo
