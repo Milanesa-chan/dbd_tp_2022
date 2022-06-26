@@ -1,5 +1,6 @@
 package persistence.dao;
 
+import org.springframework.stereotype.Repository;
 import persistence.entities.Actividad;
 
 import javax.persistence.EntityManager;
@@ -7,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
+@Repository
 public class ActividadDAOImplementation implements IActividadDAO {
 
     @PersistenceContext
