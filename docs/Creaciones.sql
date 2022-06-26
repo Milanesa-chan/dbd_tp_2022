@@ -85,6 +85,8 @@ FOR EACH ROW EXECUTE FUNCTION prof_capacitado_para_turno();
 
 -- Nombre: socios_todas_actividades_gratuitas_anio_pasado
 
+
+CREATE OR REPLACE VIEW socios_todas_actividades_gratuitas_anio_pasado AS (
 SELECT count(*), tipo FROM "Socio" S
 WHERE NOT EXISTS (
     SELECT id_actividad FROM "Actividad" A
@@ -96,5 +98,5 @@ WHERE NOT EXISTS (
         WHERE SIE.cod_base = S.cod_base AND SIE.id_socio = S.id_socio
         AND  (DATE_PART('year',SIE.fecha_inscr) = DATE_PART('year',CURRENT_DATE) - 1)
     )
-)
-group by tipo
+) GROUP BY tipo
+);

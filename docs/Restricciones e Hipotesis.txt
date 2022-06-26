@@ -1,0 +1,54 @@
+-------------------------------------Restricciones adicionales:
+
+-Numero de celular puede ser null
+
+-Al crear un grupo familiar el primer socio registrado (y por ende el titular) no puede ser de tipo Infantil.]
+
+- Para que un profesional este a cargo de una actividad debe estar capacitado para la misma. Para que un profesional se encuentre en una actividad agendada para una zona, debe estar o a cargo de la misma.
+
+- Las actividades que se desarrollan en un turno si o si deben poder desarrollarse en la zona en la cual se realiza dicho turno.
+
+- Las inscripciones de un socio a un turno conllevaran un arancel solo si la actividad desarrollada en ese turno es de tipo arancelada
+
+
+-------------------------------------Hipotesis:
+
+-Se registra el domicilio y telefono de los socios en el Grupo Familiar asociado a cada uno. Se asume que no habra 2 socios dentro del mismo grupo familiar con distinto telefono y direccion.
+
+- No se registraran grupos familiares sin socios.
+
+- El primer Socio registrado tendra el id_socio = 00 y sera el titular.
+
+- Se registra tambien el apellido de los Socios. Dentro del mismo grupo familiar pueden tener distinto apellido.
+
+- Se registra las actividades en las cuales los profesionales estan a cargo actualmente y en las cuales podrian estar a cargo en un futuro ( al estar capacitados para la misma)
+
+- Un profesional puede estar a cargo de muchas actividades. 
+
+- Se asume que los datos personales del profesional son: nombre, apellido, nro doc, tipo doc.
+
+- Se asume que puede haber actividades sin profesionales a cargo y profesionales sin actividades a cargo. 
+
+- Se asume que puede haber socios registrados sin estar inscriptos alguna actividad.
+
+- Se asume que puede haber actividades sin ningun profesional capacitado para realizarlas pero los profesionales registrados si o si deben estar capacitados para al menos 1 actividad.
+
+- Se asume que las actividades se desarrollan en un unico lugar en el predio, pero dentro de esa zona se pueden realizar muchas actividades.
+
+- Se asume que el socio puede darse de baja de una actividad y puede volverse a inscribir en un futuro ( por lo tanto el atributo fecha de la inscripcion es clave).
+
+- Se asume que no puede haber turnos sin profesionales.
+
+- Se asume que no se pueden pagar aranceles parcialmente, es decir que o se paga completamente o no se paga.
+
+- Existe un campo fecha de renovacion en la entidad Arancel. Dicha fecha vale la fecha de inscripcion + el periodo del arancel de la actividad arancelada. Una vez que se llegue a dicha fecha, se actualizara la deuda del socio ( lo que valia + costo de la actividad arancelada * un posible descuento). Este procedimiento se repetira para cada arancel de cada actividad en la que se inscribio cada socio dependiendo del periodo de cada una. 
+
+- El monto relacionado a la factura es un valor calculable que viene de la deuda del socio. Se diagrama para tener un registro historico de lo que se debia pagar en cada factura. 
+
+- La deuda del socio se actualiza en base a la diferencia del monto del pago y el monto de la factura.
+
+- La fecha de vigencia es un atributo calculable ( today + X cantidad de dias)
+
+
+
+LOS DESCUENTOS Y EL MONTO BASE VAN EN EL STORE PROCEDURE
