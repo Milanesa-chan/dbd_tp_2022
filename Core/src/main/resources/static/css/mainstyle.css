@@ -102,3 +102,14 @@ form > button {
     50% { color: black; font-size: 105%; }
     100% { color: azure; font-size: 110%; }
 }
+
+
+.col-inscr {
+    margin-top: 40px;
+    height: 80vh;
+    text-align: center;
+}
+
+.col-inscr > h2 {
+    line-height: 20vh;
+}

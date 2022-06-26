@@ -14,4 +14,6 @@ public interface ISocioService
     List<Socio> getSociosTitulares();
 
     public int getCantidadSociosFamilia(long cod_base);
+
+    public List<Socio> findAll();
 }

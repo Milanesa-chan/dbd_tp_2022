@@ -37,4 +37,9 @@ public class SocioServiceImpl implements ISocioService {
         return socioDAO.getCantidadSociosFamilia(cod_base);
     }
 
+    @Override
+    public List<Socio> findAll() {
+        return socioDAO.findAll();
+    }
+
 }

@@ -17,5 +17,6 @@ public interface ISocioDAO
 
     List<Socio> getSociosTitulares();
 
+    List<Socio> findAll();
 }
 
