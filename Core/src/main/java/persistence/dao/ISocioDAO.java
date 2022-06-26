@@ -2,6 +2,7 @@ package persistence.dao;
 
 import persistence.entities.Socio;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface ISocioDAO
@@ -10,10 +11,10 @@ public interface ISocioDAO
 
     public int save(Socio socio);
 
-
     List<Socio> getSocios();
 
-    public int cantidadSociosFamilia(long cod_base);
+    public int getCantidadSociosFamilia(long cod_base);
+
     List<Socio> getSociosTitulares();
 
 }

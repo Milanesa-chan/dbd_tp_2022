@@ -8,6 +8,7 @@ import services.interfaces.ISocioService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -32,9 +33,8 @@ public class SocioServiceImpl implements ISocioService {
     }
 
     @Override
-    public Socio findOneById(int idTitular) {
-        return socioDAO.findOneById(idTitular);
+    public int getCantidadSociosFamilia(long cod_base) {
+        return socioDAO.getCantidadSociosFamilia(cod_base);
     }
-
 
 }

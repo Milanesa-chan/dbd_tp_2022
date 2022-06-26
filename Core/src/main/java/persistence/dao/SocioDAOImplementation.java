@@ -1,5 +1,6 @@
 package persistence.dao;
 
+import org.hibernate.type.LongType;
 import org.springframework.stereotype.Repository;
 import persistence.entities.Socio;
 
@@ -7,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.math.BigInteger;
 import java.util.List;
 
 @Repository
@@ -26,9 +28,10 @@ public class SocioDAOImplementation implements ISocioDAO{
     @Transactional
     @Override
     public int save(Socio socio) {
-        Query q = entityManager.createNativeQuery("INSERT INTO \"Socio\" (cod_base,nombre, apellido, celular, fecha_nac,fecha_inscripcion_club, tipo) " +
-                "VALUES (:cod_base,:nombre, :apellido, :celular, :fecha_nac,:fecha_inscripcion_club, :tipo) RETURNING id_socio");
+        Query q = entityManager.createNativeQuery("INSERT INTO \"Socio\" (cod_base, id_socio, nombre, apellido, celular, fecha_nac,fecha_inscripcion_club, tipo) " +
+                "VALUES (:cod_base, :id_socio, :nombre, :apellido, :celular, :fecha_nac,:fecha_inscripcion_club, :tipo) RETURNING id_socio");
         q.setParameter("cod_base", socio.getCod_base());
+        q.setParameter("id_socio", socio.getId_socio());
         q.setParameter("nombre", socio.getNombre());
         q.setParameter("apellido", socio.getApellido());
         q.setParameter("celular", socio.getCelular());
@@ -45,10 +48,13 @@ public class SocioDAOImplementation implements ISocioDAO{
     }
 
     @Override
-    public int cantidadSociosFamilia(long cod_base) {
-        Query q = entityManager.createNativeQuery("SELECT COUNT(*) FROM \"Socio\" WHERE cod_base = :cod_base", Integer.class);
+    @Transactional
+    public int getCantidadSociosFamilia(long cod_base) {
+        Query q = entityManager.createNativeQuery("SELECT COUNT(*) FROM \"Socio\" WHERE cod_base = :cod_base");
         q.setParameter("cod_base", cod_base);
-        return (int) q.getSingleResult();
+        BigInteger res = (BigInteger) q.getSingleResult();
+
+        return res.intValue();
     }
 
     public List<Socio> getSociosTitulares() {

@@ -13,6 +13,7 @@ import persistence.entities.Socio;
 import services.interfaces.IGrupoFamiliarService;
 import services.interfaces.ISocioService;
 
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -61,15 +62,19 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/newClient/user/save", method = RequestMethod.POST)
-    public String saveGroup(@RequestParam(name="nombre") String nombre, @RequestParam(name="apellido") String apellido,
+    public String saveUser(Model model, @RequestParam(name="nombre") String nombre, @RequestParam(name="apellido") String apellido,
                             @RequestParam(name="celular") String celular, @RequestParam(name="fecha_nac") String fecha_nac,
                             @RequestParam(name="tipo_socio") char tipo_socio,
                             @RequestParam(name="idGrupo") int idGrupo) throws ParseException {
 
+        List<Socio> socios = socioService.getSociosTitulares();
+        model.addAttribute("socios", socios);
+
         Date fecha_nacimiento = new SimpleDateFormat("dd/MM/yyyy").parse(fecha_nac);
         Date fecha_inscripcion_club = Date.from(Instant.now());
-        Socio socio = new Socio(idGrupo,nombre,apellido,celular,fecha_nacimiento,fecha_inscripcion_club, tipo_socio);
+        int idSocio = socioService.getCantidadSociosFamilia(idGrupo);
+        Socio socio = new Socio(idGrupo, idSocio ,nombre,apellido,celular,fecha_nacimiento,fecha_inscripcion_club, tipo_socio);
         int id_socio = socioService.save(socio);
-        return "/clients/new_group";
+        return "/clients/new_user";
     }
 }
