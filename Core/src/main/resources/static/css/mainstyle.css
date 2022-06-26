@@ -14,7 +14,17 @@
 
 a {
   text-decoration: none;
-  color: white;
+  color: azure;
+}
+
+a:focus {
+  text-decoration: none;
+  color: azure;
+}
+
+a:hover {
+  text-decoration: none;
+  color: azure;
 }
 
 .form-container {
@@ -49,26 +59,24 @@ form > button {
 }
 
 .register-group {
-    background: rgb(55,214,155);
-    background: linear-gradient(90deg, rgba(55,214,155,1) 13%, rgba(70,135,148,1) 100%);
+    background: url('register-group.jpg') center center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
     font-size: 30px;
 }
 
 .register-user {
-    background: rgb(55,214,155);
-    background: linear-gradient(90deg, rgba(55,214,155,1) 13%, rgba(70,135,148,1) 100%);
+    background: url('register-user.jpg') center center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
     font-size: 30px;
 }
 
@@ -83,7 +91,6 @@ form > button {
 .a-register-group {
     color: azure;
     transition: 1s;
-    animation: register-animation;
 }
 
 .a-register-user {
@@ -99,10 +106,18 @@ form > button {
     animation: register-animation;
 }
 
+.a-register-group:focus {
+    animation: register-animation;
+}
+
+.a-register-user:focus {
+    animation: register-animation;
+}
+
 @keyframes register-animation {
-    0% { color: azure }
-    50% { color: black; font-size: 105%; }
-    100% { color: azure; font-size: 110%; }
+    0% { color: azure !important; }
+    50% { color: black !important; font-size: 105% !important; }
+    100% { color: azure !important; font-size: 110% !important; }
 }
 
 
@@ -114,6 +129,11 @@ form > button {
 
 .col-inscr > h2 {
     line-height: 20vh;
+    color: azure;
+}
+
+.col-inscr > label {
+    color: azure;
 }
 
 .signupselect {
@@ -124,14 +144,17 @@ form > button {
 }
 
 .signup {
-    background: rgb(107,101,207);
-    background: linear-gradient(90deg, rgba(107,101,207,1) 0%, rgba(55,214,155,1) 36%, rgba(0,212,255,1) 100%);
+    background: url('inscripcion-bg.jpg') center center/cover no-repeat;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.6);
     height: 100vh;
     max-width: 100vw;
 }
 
 .buttoninscribir {
-    margin-left: 40%;
+    margin-left: 50%;
     width: 20vw;
     font-size: 150%;
+    position: absolute;
+    margin-top: 27%;
+    transform: translateX(-50%);
 }
