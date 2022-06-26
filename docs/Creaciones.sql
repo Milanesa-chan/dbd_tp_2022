@@ -28,6 +28,7 @@ ON "Socio"
 FOR EACH ROW
 EXECUTE PROCEDURE fun_trig_insertar_socio();
 
+
 -------------------------
 -- INSERCION DE VISTAS --
 ----------------------------
@@ -50,3 +51,25 @@ EXECUTE PROCEDURE fun_trig_insertar_socio();
              and DATE_PART('year',fecha_vigencia) = DATE_PART('year',CURRENT_DATE) AND g.cod_base = cm.cod_base)
           GROUP BY g.cod_base) j ON j.cod_base = s.cod_base
   WHERE s.id_socio = 0;
+
+--------------
+-- TRIGGERS --
+--------------
+
+-- CAPACIDAD DE UN PROFESIONAL PARA ESTAR A CARGO DE UNA ACTIVIDAD --
+
+CREATE OR REPLACE FUNCTION prof_capacitado_para_turno() RETURNS TRIGGER
+LANGUAGE plpgsql AS $$
+BEGIN
+	IF NOT EXISTS (SELECT * FROM "Turno" T INNER JOIN "Capacitado_Para" CP
+ON T.id_actividad = CP.id_actividad
+				   WHERE T.id_turno = NEW.id_turno AND CP.id_profesional = NEW.id_profesional)
+	THEN
+		RAISE NOTICE 'El profesional no esta capacitado para esa actividad';
+	END IF;
+	RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER capacidad_profesional BEFORE INSERT ON "A_Cargo_De"
+FOR EACH ROW EXECUTE FUNCTION prof_capacitado_para_turno();
