@@ -62,5 +62,11 @@ public class SocioDAOImplementation implements ISocioDAO{
 
         return lista;
     }
+
+    @Override
+    public List<Socio> findAll() {
+        List<Socio> lista = entityManager.createNativeQuery("SELECT * FROM \"Socio\"").getResultList();
+        return lista;
+    }
 }
 
