@@ -49,12 +49,12 @@ public class SocioDAOImplementation implements ISocioDAO{
         Query q = entityManager.createNativeQuery("SELECT COUNT(*) FROM \"Socio\" WHERE cod_base = :cod_base", Integer.class);
         q.setParameter("cod_base", cod_base);
         return (int) q.getSingleResult();
+    }
 
     public List<Socio> getSociosTitulares() {
         List<Socio> lista = entityManager.createNativeQuery("SELECT * FROM \"Socio\" WHERE id_socio=0").getResultList();
 
         return lista;
-    }
     }
 }
 
