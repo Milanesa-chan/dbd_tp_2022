@@ -10,6 +10,8 @@ public interface ISocioDAO
 
     public int save(Socio socio);
 
-    List<Socio> getSocios();
+    List<Socio> getSociosTitulares();
+
+    Socio findOneById(int idTitular);
 }
 

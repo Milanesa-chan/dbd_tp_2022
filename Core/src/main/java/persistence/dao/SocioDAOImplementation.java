@@ -39,10 +39,17 @@ public class SocioDAOImplementation implements ISocioDAO{
     }
 
     @Override
-    public List<Socio> getSocios() {
-        Query q = entityManager.createNativeQuery("SELECT * FROM \"Socio\"");
+    public List<Socio> getSociosTitulares() {
+        List<Socio> lista = entityManager.createNativeQuery("SELECT * FROM \"Socio\" WHERE id_socio=0").getResultList();
 
-        return q.getResultList();
+        return lista;
+    }
+
+    @Override
+    public Socio findOneById(int idTitular) {
+        Socio s = (Socio) entityManager.createNativeQuery("SELECT * FROM \"Socio\" WHERE id_socio = :id")
+                .setParameter("id", idTitular).getSingleResult();
+        return s;
     }
 }
 
