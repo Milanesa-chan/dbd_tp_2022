@@ -40,9 +40,15 @@ public class SocioDAOImplementation implements ISocioDAO{
 
     @Override
     public List<Socio> getSocios() {
-        Query q = entityManager.createNativeQuery("SELECT * FROM \"Socio\"");
+        Query q = entityManager.createNativeQuery("SELECT * FROM \"Socio\"", Socio.class);
+        return (List<Socio>) q.getResultList();
+    }
 
-        return q.getResultList();
+    @Override
+    public int cantidadSociosFamilia(long cod_base) {
+        Query q = entityManager.createNativeQuery("SELECT COUNT(*) FROM \"Socio\" WHERE cod_base = :cod_base", Integer.class);
+        q.setParameter("cod_base", cod_base);
+        return (int) q.getSingleResult();
     }
 }
 
