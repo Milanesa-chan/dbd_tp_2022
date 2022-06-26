@@ -27,5 +27,78 @@ form > button {
 
 #h2_grupo {
     margin-top: 20px;
+}
 
+.col-select {
+    text-align: center;
+    height: 70vh;
+    display: block;
+    line-height: 60vh;
+    margin-top: 30px;
+}
+
+.user-registration {
+    background: url('registration-bg.jpg') center center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    height: 100vh;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.6);
+}
+
+.register-group {
+    background: url('register-group.jpg') center center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
+    font-size: 30px;
+}
+
+.register-user {
+    background: url('register-user.jpg') center center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
+    font-size: 30px;
+}
+
+.register-user:hover {
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
+}
+
+.register-group:hover {
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
+}
+
+.a-register-group {
+    color: azure;
+    transition: 1s;
+    animation: register-animation;
+}
+
+.a-register-user {
+    color: azure;
+    transition: 1s;
+}
+
+.a-register-group:hover {
+    animation: register-animation;
+}
+
+.a-register-user:hover {
+    animation: register-animation;
+}
+
+@keyframes register-animation {
+    0% { color: azure }
+    50% { color: black; font-size: 105%; }
+    100% { color: azure; font-size: 110%; }
 }

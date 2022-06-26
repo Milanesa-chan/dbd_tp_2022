@@ -13,14 +13,19 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 
+<div class="user-registration">
 <div class="container">
+    <div class="row">
 
+        <div class="col col-select me-5 register-group">
+            <a class="link-secondary a-register-group" th:href="@{/newClient/group}">Registrar un nuevo Grupo Familiar</a>
+        </div>
 
-    <a class="link-secondary" th:href="@{/newClient/group}">Create new Group</a>
-
-    <a class="link-secondary" th:href="@{/newClient/user}">Create new User</a>
-
-
+        <div class="col col-select register-user">
+            <a class="link-secondary a-register-user" th:href="@{/newClient/user}">Registrar un nuevo Usuario</a>
+        </div>
+    </div>
+</div>
 </div>
 
 </body>
